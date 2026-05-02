@@ -1,139 +1,153 @@
-import Link from 'next/link';
-import { FaFacebook, FaInstagram, FaLinkedin, FaPhoneAlt, FaTwitter } from 'react-icons/fa';
-import { LuMapPin } from 'react-icons/lu';
-import { IoIosMail, IoMdSend } from 'react-icons/io';
+import Link from "next/link";
+import {
+  FaInstagram,
+  FaPinterest,
+  FaHouzz,
+  FaYoutube,
+  FaPhoneAlt
+} from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
+import { RiMapPin2Fill } from "react-icons/ri";
+import { IoPlayCircle } from "react-icons/io5";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-slate-900 text-gray-300 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="w-full bg-[#fcfbf9] dark:bg-[#0f0e0d] text-[#2c2824] dark:text-[#e8e2d9] font-sans transition-colors duration-300">
 
-        {/* Column 1: Brand & Bio */}
-        <div className="space-y-6">
-          <Link href="/" className="text-2xl font-bold text-white tracking-tight">
-            DEV<span className="text-blue-500">PORTFOLIO</span>
-          </Link>
-          <p className="text-sm leading-relaxed text-gray-400">
-            Full Stack Web Developer specializing in building robust, scalable web applications.
-            Let's turn your ideas into high-performing digital reality.
-          </p>
-          <div className="flex space-x-4">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-              className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300">
-              <FaFacebook size={18} />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-              className="p-2 bg-slate-800 rounded-full hover:bg-blue-400 hover:text-white transition-all duration-300">
-              <FaTwitter size={18} />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-              className="p-2 bg-slate-800 rounded-full hover:bg-pink-600 hover:text-white transition-all duration-300">
-              <FaInstagram size={18} />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-              className="p-2 bg-slate-800 rounded-full hover:bg-blue-700 hover:text-white transition-all duration-300">
-              <FaLinkedin size={18} />
-            </a>
-          </div>
-        </div>
+      {/* Gold accent bar */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-[#c8a96e] via-[#8a6030] to-[#c8a96e]" />
 
-        {/* Column 2: Quick Navigation */}
-        <div>
-          <h4 className="text-white font-semibold text-lg mb-6 relative inline-block">
-            Quick Links
-            <span className="absolute left-0 -bottom-1 w-10 h-0.5 bg-blue-500"></span>
-          </h4>
-          <ul className="space-y-4 text-sm">
-            <li><Link href="/" className="hover:text-blue-500 transition-colors">Home</Link></li>
-            <li><Link href="/about" className="hover:text-blue-500 transition-colors">About Me</Link></li>
-            <li><Link href="/projects" className="hover:text-blue-500 transition-colors">Portfolio</Link></li>
-            <li><Link href="/BlogPage" className="hover:text-blue-500 transition-colors">Tech Blog</Link></li>
-            <li><Link href="/contact" className="hover:text-blue-500 transition-colors">Contact</Link></li>
-          </ul>
-        </div>
+      {/* Top Section */}
+      <div className="container mx-auto px-6 md:px-12 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-12">
 
-        {/* Column 3: Tech Stack / Services */}
-        <div>
-          <h4 className="text-white font-semibold text-lg mb-6 relative inline-block">
-            Services
-            <span className="absolute left-0 -bottom-1 w-10 h-0.5 bg-blue-500"></span>
-          </h4>
-          <ul className="space-y-4 text-sm">
-            <li><span className="hover:text-blue-500 cursor-default transition-colors">Frontend Development</span></li>
-            <li><span className="hover:text-blue-500 cursor-default transition-colors">Backend Architecture</span></li>
-            <li><span className="hover:text-blue-500 cursor-default transition-colors">Full Stack Solutions</span></li>
-            <li><span className="hover:text-blue-500 cursor-default transition-colors">Database Management</span></li>
-            <li><span className="hover:text-blue-500 cursor-default transition-colors">API Integration</span></li>
-          </ul>
-        </div>
-
-        {/* Column 4: Contact & Newsletter */}
-        <div>
-          <h4 className="text-white font-semibold text-lg mb-6 relative inline-block">
-            Stay Updated
-            <span className="absolute left-0 -bottom-1 w-10 h-0.5 bg-blue-500"></span>
-          </h4>
-          <p className="text-sm mb-4">Subscribe to my newsletter for tech insights.</p>
-          <form className="flex mb-6 group">
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="w-full bg-slate-800 text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-1 focus:ring-blue-500 border border-transparent focus:border-blue-500"
-              required
-            />
-            <button className="bg-blue-600 px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors flex items-center justify-center">
-              <IoMdSend size={18} />
-            </button>
-          </form>
-          <div className="space-y-3 text-sm">
-            <div className="flex items-center space-x-3 group cursor-pointer">
-              <FaPhoneAlt size={16} className="text-blue-500 group-hover:scale-110 transition-transform" />
-              <span className="group-hover:text-blue-400">+880 1234-567890</span>
+          {/* Brand */}
+          <div className="space-y-6">
+            <div>
+              <div className="h-8 md:h-10 lg:h-12 w-auto overflow-hidden flex items-center justify-start">
+  <img
+    className="h-full w-auto object-contain"
+    src="/Technology-Logo.png"
+    alt="logo"
+  />
+</div>
+              <p className="text-[10px] tracking-[0.25em] uppercase text-[#6c6253] dark:text-[#8a8070] mt-2 font-medium transition-colors">
+                Tiles & Surfaces
+              </p>
+              <p className="font-serif text-xs italic text-[#877d6e] dark:text-[#5a5448] mt-1 transition-colors">
+                Crafted for spaces that endure.
+              </p>
             </div>
-            <div className="flex items-center space-x-3 group cursor-pointer">
-              <a
-                href="mailto:hello@devportfolio.com?subject=Contact%20from%20Portfolio&body=Hello%20I%20want%20to%20talk%20about..."
-                className="flex items-center space-x-3 group cursor-pointer"
-              >
-                <IoIosMail
-                  size={18}
-                  className="text-blue-500 group-hover:scale-110 transition-transform"
-                />
-                <span className="group-hover:text-blue-400">
-                  hello@devportfolio.com
+
+            <p className="text-sm text-[#5a544c] dark:text-[#7a7468] leading-relaxed max-w-xs transition-colors">
+              Premium tile collections sourced from Italy, Spain, and Turkey — bringing artisanal craftsmanship to modern interiors since 2008.
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              {["ISO Certified", "Eco Friendly", "50+ Collections"].map((b) => (
+                <span key={b} className="text-[9px] tracking-widest uppercase px-3 py-1.5 border border-[#e1ded8] dark:border-[#3a3630] bg-[#f4f2eb] dark:bg-transparent text-[#6c6253] dark:text-[#8a8070] rounded-sm transition-colors">
+                  {b}
                 </span>
-              </a>
+              ))}
             </div>
-            <div className="flex items-start space-x-3">
-              <LuMapPin size={18} className="text-blue-500 mt-1" />
-              <a
-                href="https://www.google.com/maps?q=Dhaka,Bangladesh"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-blue-500 transition"
-              >
-                Dhaka, Bangladesh
-              </a>
+          </div>
+
+          {/* Links Sections */}
+          <FooterCol title="Collections" links={["Marble Series", "Ceramic Classic", "Porcelain Pro", "Mosaic Art", "Outdoor Stone", "Wood Effect"]} />
+          <FooterCol title="Company" links={["Our Story", "Showrooms", "Careers", "Press & Media", "Sustainability", "Partners"]} />
+          <FooterCol title="Support" links={["Installation Guide", "Care & Maintenance", "Find a Dealer", "Sample Request", "Warranty", "Contact Us"]} />
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="h-[0.5px] bg-gradient-to-r from-transparent via-[#ebdcd0] dark:via-[#2e2b27] to-transparent mx-6 md:mx-12" />
+
+      {/* Contact Strip */}
+      <div className="container mx-auto px-6 md:px-12 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-[#ebdcd0] dark:border-[#1e1c1a] pb-8">
+          <ContactItem icon={<IoMdMail className="text-[#c8a96e]" size={18} />} label="hello@luxoratiles.com" sub="Trade & wholesale inquiries" />
+          <ContactItem icon={<FaPhoneAlt className="text-[#c8a96e]" size={16} />} label="+1 (800) 529-6729" sub="Mon – Sat, 9am – 6pm" />
+          <ContactItem icon={<RiMapPin2Fill className="text-[#c8a96e]" size={18} />} label="142 Tile District, NYC" sub="Visit our flagship showroom" />
+          <ContactItem icon={<IoPlayCircle className="text-[#c8a96e]" size={20} />} label="Watch: Tile Trends 2025" sub="New video every Thursday" />
+        </div>
+      </div>
+
+      {/* Newsletter + Social */}
+      <div className="container mx-auto px-6 md:px-12 py-10">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 border-b border-[#ebdcd0] dark:border-[#1e1c1a] pb-10">
+          <div className="w-full lg:max-w-lg">
+            <p className="text-[10px] tracking-[0.2em] uppercase text-[#6c6253] dark:text-[#5a5448] mb-3 transition-colors">Stay Inspired</p>
+            <p className="font-serif text-xl md:text-2xl text-[#1a1510] dark:text-[#e0d9ce] mb-6 transition-colors">
+              Design trends, new arrivals & exclusive offers
+            </p>
+            <div className="flex w-full">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                className="flex-1 bg-white dark:bg-[#1a1815] border border-[#d6cfc5] dark:border-[#2e2b27] border-r-0 text-[#1a1510] dark:text-[#e0d9ce] text-sm px-4 py-3 outline-none focus:border-[#c8a96e] transition-colors"
+              />
+              <button className="bg-[#c8a96e] hover:bg-[#b8995e] text-[#1a1510] text-[11px] tracking-widest uppercase font-semibold px-6 py-3 transition-all active:scale-95 shrink-0">
+                Subscribe
+              </button>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-start lg:items-end gap-4 w-full lg:w-auto">
+            <p className="text-[10px] tracking-[0.2em] uppercase text-[#6c6253] dark:text-[#5a5448] transition-colors">Follow the craft</p>
+            <div className="flex gap-3">
+              {[
+                { icon: <FaInstagram size={20} />, link: "#" },
+                { icon: <FaPinterest size={20} />, link: "#" },
+                { icon: <FaHouzz size={20} />, link: "#" },
+                { icon: <FaYoutube size={20} />, link: "#" }
+              ].map((social, i) => (
+                <Link
+                  key={i}
+                  href={social.link}
+                  className="w-10 h-10 border border-[#d6cfc5] dark:border-[#2e2b27] bg-white dark:bg-transparent text-[#6c6253] dark:text-[#7a7468] hover:text-[#c8a96e] dark:hover:text-[#c8a96e] hover:border-[#c8a96e] dark:hover:border-[#c8a96e] flex items-center justify-center transition-all duration-300"
+                >
+                  {social.icon}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="mt-16 pt-8 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-xs sm:text-sm text-gray-500 font-medium">
-          <p>© {currentYear} DevPortfolio. Crafted with Next.js & Tailwind.</p>
-          <div className="flex space-x-6">
-            <Link href="/privacy" className="hover:text-white transition-colors underline-offset-4 hover:underline">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors underline-offset-4 hover:underline">Terms of Service</Link>
-            <Link href="/cookies" className="hover:text-white transition-colors underline-offset-4 hover:underline">Cookie Policy</Link>
-          </div>
+      <div className="container mx-auto px-6 md:px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+        <span className="text-xs text-[#7c746a] dark:text-[#4a4640] transition-colors">© 2025 Luxora Tiles & Surfaces. All rights reserved.</span>
+        <div className="flex flex-wrap justify-center gap-6">
+          {["Privacy Policy", "Terms of Use", "Cookie Settings", "Sitemap"].map((l) => (
+            <Link key={l} href="#" className="text-xs text-[#7c746a] dark:text-[#4a4640] hover:text-[#c8a96e] dark:hover:text-[#c8a96e] transition-colors">{l}</Link>
+          ))}
         </div>
       </div>
     </footer>
   );
 };
+
+const FooterCol = ({ title, links }) => (
+  <div className="space-y-5">
+    <p className="text-[10px] tracking-[0.2em] uppercase text-[#6c6253] dark:text-[#5a5448] font-semibold transition-colors">{title}</p>
+    <div className="flex flex-col gap-3">
+      {links.map((l) => (
+        <Link key={l} href="#" className="text-[13.5px] text-[#5a544c] dark:text-[#7a7468] hover:text-[#c8a96e] dark:hover:text-[#c8a96e] transition-colors">{l}</Link>
+      ))}
+    </div>
+  </div>
+);
+
+const ContactItem = ({ icon, label, sub }) => (
+  <div className="flex items-center gap-4 group">
+    <div className="w-10 h-10 bg-white dark:bg-[#1e1c1a] border border-[#d6cfc5] dark:border-[#2e2b27] group-hover:border-[#c8a96e] flex items-center justify-center shrink-0 transition-colors">
+      {icon}
+    </div>
+    <div>
+      <p className="text-sm text-[#4a4238] dark:text-[#a09080] font-medium leading-none mb-1 group-hover:text-[#1a1510] dark:group-hover:text-[#e8e2d9] transition-colors">{label}</p>
+      <p className="text-[11px] text-[#7c746a] dark:text-[#6a6460] transition-colors">{sub}</p>
+    </div>
+  </div>
+);
 
 export default Footer;

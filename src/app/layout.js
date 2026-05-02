@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 // import ThimProvider from "@/Provider/ThimProvider";
 import Footer from "@/components/Footer/Footer";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 
 export const metadata = {
@@ -13,13 +14,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="en" data-theme="light"
+      lang="en" suppressHydrationWarning
       className={`h-full antialiased`}
     >
       <body className="min-h-full flex flex-col container mx-auto bg-background text-foreground">
+        <ThemeProvider>
+
           <Navbar />
           {children}
-          <Footer/>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -53,15 +53,13 @@ const projects = [
         code: "#"
     }
 ];
-
-
 export default function ProjectGallery() {
     return (
-        <section className="py-20 px-6 container mx-auto bg-slate-950 min-h-screen">
+        <section className="py-20 px-6 container mx-auto bg-white dark:bg-slate-950 min-h-screen transition-colors duration-300">
             {/* Header */}
             <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-                    My Creative <span className="text-blue-500">Portfolio</span>
+                <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-8">
+                    My Creative <span className="text-blue-600 dark:text-blue-500">Portfolio</span>
                 </h2>
             </div>
 

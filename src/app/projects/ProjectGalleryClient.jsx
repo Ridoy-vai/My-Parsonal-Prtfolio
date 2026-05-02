@@ -24,7 +24,7 @@ export default function ProjectGalleryClient({ projects }) {
                         className={`px-6 py-2 rounded-xl font-medium transition-all duration-300 ${
                             filter === cat 
                             ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105" 
-                            : "bg-slate-900 text-gray-400 hover:bg-slate-800"
+                            : "bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800"
                         }`}
                     >
                         {cat}
@@ -46,7 +46,7 @@ export default function ProjectGalleryClient({ projects }) {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.9 }}
                             transition={{ duration: 0.4 }}
-                            className="bg-slate-900 rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col hover:border-blue-500/50 transition-colors group"
+                            className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden flex flex-col hover:border-blue-500/50 transition-colors group"
                         >
                             {/* Image Section */}
                             <div className="relative h-56 overflow-hidden">
@@ -62,28 +62,28 @@ export default function ProjectGalleryClient({ projects }) {
 
                             {/* Content Section */}
                             <div className="p-6 flex flex-col flex-grow">
-                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                     {project.title}
                                 </h3>
-                                <p className="text-gray-400 text-sm mb-6 line-clamp-2">
+                                <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">
                                     {project.description}
                                 </p>
 
                                 {/* Tags */}
                                 <div className="flex flex-wrap gap-2 mb-8 mt-auto">
                                     {project.tags.map(tag => (
-                                        <span key={tag} className="px-3 py-1 bg-slate-800 text-gray-300 rounded-md text-[11px] font-semibold flex items-center gap-1 border border-slate-700">
-                                            <FaCode className="text-blue-500" size={10} /> {tag}
+                                        <span key={tag} className="px-3 py-1 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md text-[11px] font-semibold flex items-center gap-1 border border-slate-200 dark:border-slate-700">
+                                            <FaCode className="text-blue-600 dark:text-blue-500" size={10} /> {tag}
                                         </span>
                                     ))}
                                 </div>
 
                                 {/* Buttons */}
                                 <div className="grid grid-cols-2 gap-4 mt-auto">
-                                    <a href={project.demo} target="_blank" className="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-700 text-white text-sm font-medium hover:bg-blue-600 hover:border-blue-600 transition-all active:scale-95">
+                                    <a href={project.demo} target="_blank" className="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-blue-600 bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-all active:scale-95 shadow-md shadow-blue-600/20">
                                         <FaExternalLinkAlt size={14} /> Live Demo
                                     </a>
-                                    <a href={project.code} target="_blank" className="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-700 text-white text-sm font-medium hover:bg-slate-800 transition-all active:scale-95">
+                                    <a href={project.code} target="_blank" className="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-95">
                                         <FaGithub size={16} /> Source Code
                                     </a>
                                 </div>
@@ -96,7 +96,7 @@ export default function ProjectGalleryClient({ projects }) {
             {/* Empty State */}
             {filteredProjects.length === 0 && (
                 <div className="text-center py-20">
-                    <p className="text-gray-500 text-lg">No projects found in this category.</p>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">No projects found in this category.</p>
                 </div>
             )}
         </>

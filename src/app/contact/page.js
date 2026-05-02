@@ -14,15 +14,15 @@ const contactInfo = {
 
 export default function ContactPage() {
     return (
-        <section className="bg-slate-950 py-20 px-6 min-h-screen">
+        <section className="bg-white dark:bg-slate-950 py-20 px-6 min-h-screen transition-colors duration-300">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Get In <span className="text-blue-500">Touch</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+                        Get In <span className="text-blue-600 dark:text-blue-500">Touch</span>
                     </h2>
-                    <p className="text-gray-400 max-w-xl mx-auto text-lg">
-                        Have a project in mind or just want to say hi? Feel free to message me. 
+                    <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-lg">
+                        Have a project in mind or just want to say hi? Feel free to message me.
                         I'm always open to discussing new opportunities.
                     </p>
                 </div>
