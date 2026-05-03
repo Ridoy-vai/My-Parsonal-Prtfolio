@@ -1,6 +1,15 @@
 // SkillsSection.js (Server Component)
 import SkillsSectionClient from "./SkillsSectionClient";
-
+import { 
+    Code2, 
+    Terminal, 
+    Cloud, 
+    Wrench, 
+    Database, 
+    Server, 
+    Layers, 
+    Cpu 
+} from "lucide-react";
 const skillCategories = [
     {
         title: "Frontend",
@@ -43,17 +52,16 @@ const skillCategories = [
         ]
     }
 ];
-
-const techStack = [
-    { name: "React", iconName: "Layers" },
-    { name: "Next.js", iconName: "Globe" },
-    { name: "Node.js", iconName: "Terminal" },
-    { name: "PostgreSQL", iconName: "Database" },
-    { name: "AWS", iconName: "Cloud" },
-    { name: "Docker", iconName: "Cpu" },
-    { name: "Tailwind", iconName: "Code2" },
-    { name: "TypeScript", iconName: "Code2" },
-];
+const IconMap = {
+    Code2: <Code2 className="text-blue-500" size={24} />,
+    Terminal: <Terminal className="text-green-500" size={24} />,
+    Cloud: <Cloud className="text-sky-500" size={24} />,
+    Wrench: <Wrench className="text-orange-500" size={24} />,
+    Database: <Database className="text-purple-500" size={24} />,
+    Server: <Server className="text-pink-500" size={24} />,
+    Layers: <Layers className="text-indigo-500" size={24} />,
+    Cpu: <Cpu className="text-yellow-500" size={24} />,
+};
 
 export default function SkillsSection() {
     return (
@@ -65,9 +73,9 @@ export default function SkillsSection() {
             </div>
 
             {/* Client Logic for Animations */}
-            <SkillsSectionClient 
-                skillCategories={skillCategories} 
-                techStack={techStack} 
+            <SkillsSectionClient
+                skillCategories={skillCategories}
+                IconMap={IconMap}
             />
         </section>
     );

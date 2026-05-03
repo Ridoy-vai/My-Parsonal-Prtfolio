@@ -4,6 +4,7 @@ import FutureProjectSection from "@/components/FutureProjectSection/FutureProjec
 import Hero from "@/components/Hero/Hero";
 import ProjectGallery from "@/components/Projects/ProjectGallery";
 import SkillsSection from "@/components/SkilledSection/SkillsSection";
+import Stacks from "@/components/StackSection/Stacks";
 import Image from "next/image";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero/>
       <AboutSection/>
       <SkillsSection/>
+      <Stacks/>
       <FutureProjectSection/>
       <ProjectGallery/>
       <EducationSection/>
