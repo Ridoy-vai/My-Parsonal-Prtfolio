@@ -1,3 +1,6 @@
+import dns from "node:dns"
+dns.setServers(["8.8.8.8", "8.8.4.4"])
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
@@ -27,7 +30,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <div className="container mx-auto flex flex-col min-h-screen px-4 md:px-0">
             <Navbar />
-            <main className="flex-grow">
+            <main className="grow">
               {children}
               <AuthModal />
             </main>

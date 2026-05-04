@@ -2,25 +2,38 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { authClient } from "@/lib/auth-client";
 
 export default function AuthModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const { data: session } = authClient.useSession();
 
   useEffect(() => {
     if (isDismissed) return;
+    if (session?.user) return; // লগইন থাকলে কিছু করবে না
+
     const handleScroll = () => {
       if (!hasScrolled && window.scrollY > 80) {
         setHasScrolled(true);
-        setIsOpen(true);
+
+        // ৩৫ সেকেন্ড পর modal খুলবে
+        setTimeout(() => {
+          if (!isDismissed && !session?.user) {
+            setIsOpen(true);
+          }
+        }, 3000);
       }
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isDismissed, hasScrolled]);
+  }, [isDismissed, hasScrolled, session]);
 
   const handleNo = () => { setIsOpen(false); setIsDismissed(true); };
+
+  // বাকি সব আগের মতোই...
 
   return (
     <AnimatePresence>
@@ -195,7 +208,7 @@ function RegisterCard({ onNo }) {
               <input type="radio" name="gender" className="w-4 h-4" style={{ accentColor: "oklch(var(--b1))" }} /> Female
             </label>
           </div>
-        </div>
+        </div>                  
 
         <div className="flex flex-col gap-1.5">
           <label className="text-[11px] font-semibold uppercase tracking-widest px-1" style={{ color: muted }}>Message</label>

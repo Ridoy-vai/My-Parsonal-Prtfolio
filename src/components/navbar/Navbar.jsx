@@ -1,12 +1,18 @@
+'use client'
 import React from 'react';
 import NavLinkMap from './NavLinkMap';
 import { CiMenuKebab } from 'react-icons/ci';
 import Link from 'next/link';
 import ScrollProgress from '../ScrollProgress';
 import { ThemeSwitch } from '../theme/ThemeSwitch';
+import { authClient } from '@/lib/auth-client';
+import { section } from 'framer-motion/client';
+import { FaRegUserCircle } from 'react-icons/fa';
 
 
 const Navbar = () => {
+    const { data: session } = authClient.useSession()
+    console.log(session, " nav islogin")
     const NavButtons = [
         { name: 'Home', Path: '/' },
         { name: 'About', Path: '/about' },
@@ -15,6 +21,11 @@ const Navbar = () => {
         { name: 'Experience', Path: '/experience' },
         { name: 'Contact', Path: '/contact' },
     ];
+
+    const handelLogout = async () => {
+        await authClient.signOut();
+        alert("logout")
+    }
 
     return (
         <>
@@ -223,37 +234,42 @@ const Navbar = () => {
                         </div>
 
                         {/* Avatar dropdown */}
-                        <div className="dropdown dropdown-end">
-                            <div
-                                tabIndex={0}
-                                role="button"
-                                className="btn btn-ghost btn-circle avatar avatar-ring"
-                            >
-                                <div className="w-9 rounded-full overflow-hidden">
-                                    <img
-                                        alt="User Profile"
-                                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                                    />
+                        {/* Avatar dropdown */}
+                        {session?.user ? (
+                            <div className="dropdown dropdown-end">
+                                <div
+                                    tabIndex={0}
+                                    role="button"
+                                    className="btn btn-ghost btn-circle avatar avatar-ring"
+                                >
+                                    <div className="w-9 rounded-full overflow-hidden">
+                                        <img
+                                            alt="User Profile"
+                                            src={session.user.image || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
+                                        />
+                                    </div>
                                 </div>
+                                <ul
+                                    tabIndex={0}
+                                    className="menu menu-sm dropdown-content glass-dropdown rounded-box z-[1] mt-3 w-52 p-2"
+                                >
+                                    <li>
+                                        <Link href="#" className="justify-between py-2">
+                                            Profile
+                                            <span className="badge badge-primary badge-sm">New</span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/admin" className="py-2">Settings</Link>
+                                    </li>
+                                    <li className="mt-1 border-t border-base-200 pt-1">
+                                        <button onClick={handelLogout} className="text-error">Logout</button>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul
-                                tabIndex={0}
-                                className="menu menu-sm dropdown-content glass-dropdown rounded-box z-[1] mt-3 w-52 p-2"
-                            >
-                                <li>
-                                    <Link href="/authentication" className="justify-between py-2">
-                                        Profile
-                                        <span className="badge badge-primary badge-sm">New</span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/admin" className="py-2">Settings</Link>
-                                </li>
-                                <li className="mt-1 border-t border-base-200 pt-1">
-                                    <button className="text-error">Logout</button>
-                                </li>
-                            </ul>
-                        </div>
+                        ) : (
+                            <Link href='/authentication'><FaRegUserCircle className='w-7 h-7' /></Link>
+                        )}
                     </div>
                 </div>
 

@@ -1,5 +1,8 @@
 "use client";
 
+import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/router';
+// import { authClient } from '@/app/lib/auth-clien';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -8,22 +11,62 @@ export default function LoginClient() {
     const [showPassword, setShowPassword] = useState(false);
     const [showSignInPassword, setShowSignInPassword] = useState(false);
 
-    // Sign Up হ্যান্ডেলার
+    // Sign Up 
     const { register: registerSignUp,
         handleSubmit: handleSubmitSignUp,
         formState: { errors: errorsSignUp }
     } = useForm({ mode: "onChange" });
 
-    // Sign In হ্যান্ডেলার
+    // Sign In 
     const { register: registerSignIn,
         handleSubmit: handleSubmitSignIn,
         formState: { errors: errorsSignIn }
     } = useForm({ mode: "onChange" });
 
     // Functions
-    const onSignUpSubmit = (data) => console.log("Sign Up Data:", data);
-    const onSignInSubmit = (data) => console.log("Sign In Data:", data);
+    const onSignUpSubmit = async (formData) => {
+        // console.log("Sign Up Data:", formData);
 
+        const { data: response, error } = await authClient.signUp.email({
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+            image: formData.image,
+            callbackURL: "/",
+        });
+
+        if (error) {
+            console.error(error);
+            return;
+        }
+
+        console.log("Response:", response);
+    };
+
+
+
+    const onSignInSubmit = async (formData) => {
+        const { data: response, error } = await authClient.signIn.email({
+            email: formData.email,
+            password: formData.password,
+            rememberMe: true,
+        });
+
+        if (error) {
+            console.error("Error code:", error.code);
+            console.error("Error message:", error.message);
+            alert(error.message || "Login failed. Please try again.");
+            return;
+        }
+
+        if (response) {
+            router.push("/");
+            router.refresh();
+        }
+    };
+
+
+    
     // Social functions
     const socialAction = (action) => () => console.log(action);
 
@@ -51,7 +94,7 @@ export default function LoginClient() {
                             <input
                                 type="text"
                                 placeholder="Name"
-                                {...registerSignUp("name", { required: "Name is required", minLength: { value: 3, message: "Min 3 characters required"} })}
+                                {...registerSignUp("name", { required: "Name is required", minLength: { value: 3, message: "Min 3 characters required" } })}
                                 className={`bg-[#eee] border-none my-1 py-3 px-4 text-sm rounded-lg w-full outline-none block ${errorsSignUp.name ? 'ring-1 ring-red-400' : ''}`}
                             />
                             {errorsSignUp.name && <p className="text-red-500 text-[10px] ml-1">{errorsSignUp.name.message}</p>}
