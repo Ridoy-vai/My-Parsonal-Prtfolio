@@ -24,11 +24,12 @@ export default function AuthPage() {
     } = useForm({ mode: "onChange" });
 
     const onSignUpSubmit = async (formData) => {
+        const avatar = getAvatarFromEmail(formData.email);
         const { data: response, error } = await authClient.signUp.email({
             name: formData.name,
             email: formData.email,
             password: formData.password,
-            image: formData.image,
+            image: avatar,
             callbackURL: "/",
         });
 
@@ -57,7 +58,7 @@ export default function AuthPage() {
             return;
         }
 
-         if (response) {
+        if (response) {
             router.push("/");
             router.refresh();
         }
