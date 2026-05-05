@@ -1,5 +1,5 @@
 "use client";
-
+import md5 from "md5";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -10,6 +10,12 @@ export default function AuthPage() {
     const [isActive, setIsActive] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showSignInPassword, setShowSignInPassword] = useState(false);
+
+
+    const getAvatarFromEmail = (email) => {
+        const hash = md5(email.trim().toLowerCase());
+        return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
+    };
 
     const {
         register: registerSignUp,
