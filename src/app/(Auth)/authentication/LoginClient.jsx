@@ -1,5 +1,4 @@
 "use client";
-import md5 from "md5";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -11,11 +10,6 @@ export default function AuthPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [showSignInPassword, setShowSignInPassword] = useState(false);
 
-
-    const getAvatarFromEmail = (email) => {
-        const hash = md5(email.trim().toLowerCase());
-        return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
-    };
 
     const {
         register: registerSignUp,
@@ -30,7 +24,7 @@ export default function AuthPage() {
     } = useForm({ mode: "onChange" });
 
     const onSignUpSubmit = async (formData) => {
-        const avatar = getAvatarFromEmail(formData.email);
+        // const avatar = getAvatarFromEmail(formData.email);
         const { data: response, error } = await authClient.signUp.email({
             name: formData.name,
             email: formData.email,
