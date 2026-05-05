@@ -1,32 +1,29 @@
 "use client";
 
-import { authClient } from '@/lib/auth-client';
-import { useRouter } from 'next/router';
-// import { authClient } from '@/app/lib/auth-clien';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { authClient } from '@/lib/auth-client';
 
-export default function LoginClient() {
+export default function AuthPage() {
+    const router = useRouter();
     const [isActive, setIsActive] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showSignInPassword, setShowSignInPassword] = useState(false);
 
-    // Sign Up 
-    const { register: registerSignUp,
+    const {
+        register: registerSignUp,
         handleSubmit: handleSubmitSignUp,
         formState: { errors: errorsSignUp }
     } = useForm({ mode: "onChange" });
 
-    // Sign In 
-    const { register: registerSignIn,
+    const {
+        register: registerSignIn,
         handleSubmit: handleSubmitSignIn,
         formState: { errors: errorsSignIn }
     } = useForm({ mode: "onChange" });
 
-    // Functions
     const onSignUpSubmit = async (formData) => {
-        // console.log("Sign Up Data:", formData);
-
         const { data: response, error } = await authClient.signUp.email({
             name: formData.name,
             email: formData.email,
@@ -40,10 +37,12 @@ export default function LoginClient() {
             return;
         }
 
-        console.log("Response:", response);
+        console.log(response);
+        if (response) {
+            router.push("/");
+            router.refresh();
+        }
     };
-
-
 
     const onSignInSubmit = async (formData) => {
         const { data: response, error } = await authClient.signIn.email({
@@ -53,29 +52,23 @@ export default function LoginClient() {
         });
 
         if (error) {
-            console.error("Error code:", error.code);
-            console.error("Error message:", error.message);
+            console.error(error.code, error.message);
             alert(error.message || "Login failed. Please try again.");
             return;
         }
 
-        if (response) {
+         if (response) {
             router.push("/");
             router.refresh();
         }
     };
 
-
-    
-    // Social functions
     const socialAction = (action) => () => console.log(action);
 
     return (
         <div className="relative overflow-hidden bg-white rounded-[30px] shadow-[0_5px_15px_rgba(0,0,0,0.35)] w-3xl max-w-full min-h-120">
 
-            {/* Sign Up Form */}
-            <div className={`absolute top-0 h-full transition-all duration-700 ease-in-out left-0 w-1/2 opacity-0 z-1 
-            ${isActive ? "translate-x-full opacity-100 z-5 animate-move" : ""}`}>
+            <div className={`absolute top-0 h-full transition-all duration-700 ease-in-out left-0 w-1/2 opacity-0 z-1 ${isActive ? "translate-x-full opacity-100 z-5 animate-move" : ""}`}>
                 <form
                     onSubmit={handleSubmitSignUp(onSignUpSubmit)}
                     className="bg-white flex items-center justify-center flex-col px-10 h-full text-center"
@@ -133,14 +126,12 @@ export default function LoginClient() {
                 </form>
             </div>
 
-            {/* Sign In Form */}
-            <div className={`absolute top-0 h-full transition-all duration-700 ease-in-out left-0 w-1/2 z-2
-            ${isActive ? "translate-x-full" : ""}`}>
+            <div className={`absolute top-0 h-full transition-all duration-700 ease-in-out left-0 w-1/2 z-2 ${isActive ? "translate-x-full" : ""}`}>
                 <form
                     onSubmit={handleSubmitSignIn(onSignInSubmit)}
                     className="bg-white flex items-center justify-center flex-col px-10 h-full text-center"
                 >
-                    <h1 className="font-bold text-2xl">Sign In</h1>
+                    <h1 className="font-bold text-2xl dark:text-white">Sign In</h1>
                     <div className="my-5 flex gap-2">
                         <SocialIcon onClick={socialAction("googleSignIn")} iconClass="fa-google-plus-g" />
                         <SocialIcon onClick={socialAction("facebookSignIn")} iconClass="fa-facebook-f" />
@@ -180,19 +171,14 @@ export default function LoginClient() {
                 </form>
             </div>
 
-            {/* Toggle Panels */}
-            <div className={`absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-all duration-700 ease-in-out z-100
-                ${isActive ? "-translate-x-full rounded-r-[150px]" : "rounded-l-[150px]"}`}>
-                <div className={`bg-[#512da8] bg-linear-to-r from-[#5c6bc9] to-[#512da8] text-white relative -left-full h-full w-[200%] transition-all duration-700 ease-in-out
-                    ${isActive ? "translate-x-1/2" : "translate-x-0"}`}>
-                    <div className={`absolute w-1/2 h-full flex items-center justify-center flex-col px-8 text-center top-0 transition-all duration-700 ease-in-out
-                        ${isActive ? "translate-x-0" : "translate-x-[-200%]"}`}>
+            <div className={`absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-all duration-700 ease-in-out z-40 ${isActive ? "-translate-x-full rounded-r-[150px]" : "rounded-l-[150px]"}`}>
+                <div className={`bg-[#512da8] bg-linear-to-r from-[#5c6bc9] to-[#512da8] text-white relative -left-full h-full w-[200%] transition-all duration-700 ease-in-out ${isActive ? "translate-x-1/2" : "translate-x-0"}`}>
+                    <div className={`absolute w-1/2 h-full flex items-center justify-center flex-col px-8 text-center top-0 transition-all duration-700 ease-in-out ${isActive ? "translate-x-0" : "translate-x-[-200%]"}`}>
                         <h1 className="font-bold text-2xl">Welcome Back!</h1>
                         <p className="text-sm leading-5 tracking-tight my-5">Enter your personal details to use all of site features</p>
                         <button onClick={() => setIsActive(false)} className="bg-transparent border border-white text-white text-xs py-3 px-11 rounded-lg font-semibold tracking-wider uppercase mt-3 cursor-pointer">Sign In</button>
                     </div>
-                    <div className={`absolute w-1/2 h-full flex items-center justify-center flex-col px-8 text-center top-0 right-0 transition-all duration-700 ease-in-out
-                        ${isActive ? "translate-x-[200%]" : "translate-x-0"}`}>
+                    <div className={`absolute w-1/2 h-full flex items-center justify-center flex-col px-8 text-center top-0 right-0 transition-all duration-700 ease-in-out ${isActive ? "translate-x-[200%]" : "translate-x-0"}`}>
                         <h1 className="font-bold text-2xl">Hello Friend!</h1>
                         <p className="text-sm leading-5 tracking-tight my-5">Register with your personal details to use all of site features</p>
                         <button onClick={() => setIsActive(true)} className="bg-transparent border border-white text-white text-xs py-3 px-11 rounded-lg font-semibold tracking-wider uppercase mt-3 cursor-pointer">Sign Up</button>
@@ -205,7 +191,7 @@ export default function LoginClient() {
 
 function SocialIcon({ iconClass, onClick }) {
     return (
-        <button onClick={onClick} className="border border-gray-300 rounded-lg inline-flex justify-center items-center w-10 h-10 text-gray-800 transition-colors hover:bg-gray-100 cursor-pointer">
+        <button type="button" onClick={onClick} className="border border-gray-300 rounded-lg inline-flex justify-center items-center w-10 h-10 text-gray-800 transition-colors hover:bg-gray-100 cursor-pointer">
             <i className={`fa-brands ${iconClass}`}></i>
         </button>
     );

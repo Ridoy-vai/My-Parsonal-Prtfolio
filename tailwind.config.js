@@ -1,6 +1,5 @@
-import type { Config } from 'tailwindcss'
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+const config = {
     content: [
         './pages/**/*.{js,ts,jsx,tsx,mdx}',
         './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -11,32 +10,32 @@ const config: Config = {
         themes: [
             {
                 light: {
-                    "primary":         "#6366f1",   // indigo
+                    primary: "#6366f1",
                     "primary-content": "#ffffff",
-                    "secondary":       "#8b5cf6",   // violet
+                    secondary: "#8b5cf6",
                     "secondary-content": "#ffffff",
-                    "accent":          "#06b6d4",   // cyan
-                    "accent-content":  "#ffffff",
-                    "neutral":         "#374151",
+                    accent: "#06b6d4",
+                    "accent-content": "#ffffff",
+                    neutral: "#374151",
                     "neutral-content": "#ffffff",
-                    "base-100":        "#ffffff",
-                    "base-200":        "#f3f4f6",
-                    "base-300":        "#e5e7eb",
-                    "base-content":    "#111827",
+                    "base-100": "#ffffff",
+                    "base-200": "#f3f4f6",
+                    "base-300": "#e5e7eb",
+                    "base-content": "#111827",
                 },
                 dark: {
-                    "primary":         "#818cf8",   // lighter indigo
+                    primary: "#818cf8",
                     "primary-content": "#0f0f1a",
-                    "secondary":       "#a78bfa",   // lighter violet
+                    secondary: "#a78bfa",
                     "secondary-content": "#0f0f1a",
-                    "accent":          "#22d3ee",   // lighter cyan
-                    "accent-content":  "#0f0f1a",
-                    "neutral":         "#1f2937",
+                    accent: "#22d3ee",
+                    "accent-content": "#0f0f1a",
+                    neutral: "#1f2937",
                     "neutral-content": "#f9fafb",
-                    "base-100":        "#0f0f1a",
-                    "base-200":        "#1a1a2e",
-                    "base-300":        "#16213e",
-                    "base-content":    "#f1f5f9",
+                    "base-100": "#0f0f1a",
+                    "base-200": "#1a1a2e",
+                    "base-300": "#16213e",
+                    "base-content": "#f1f5f9",
                 },
             },
         ],
@@ -48,4 +47,4 @@ const config: Config = {
     },
 }
 
-export default config
+module.exports = config;

@@ -12,7 +12,7 @@ import { FaRegUserCircle } from 'react-icons/fa';
 
 const Navbar = () => {
     const { data: session } = authClient.useSession()
-    console.log(session, " nav islogin")
+    // console.log(session, " nav islogin")
     const NavButtons = [
         { name: 'Home', Path: '/' },
         { name: 'About', Path: '/about' },
@@ -174,7 +174,7 @@ const Navbar = () => {
                 }
             `}</style>
 
-            <div className="glass-nav">
+            <div className="glass-nav z-50">
                 <div className="navbar container mx-auto px-4 md:px-8">
                     <div className="navbar-start flex items-center gap-1">
 
