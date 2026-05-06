@@ -233,8 +233,8 @@ const Navbar = () => {
                             <ThemeSwitch />
                         </div>
 
-                        {/* Avatar dropdown */}
-                        {/* Avatar dropdown */}
+                      
+                    
                         {session?.user ? (
                             <div className="dropdown dropdown-end">
                                 <div
